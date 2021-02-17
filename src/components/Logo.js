@@ -1,9 +1,11 @@
 import React from 'react'
 
 const Logo = () => {
-    const logoimg = "./logo192.png" 
+    const logoimg = {
+        url:"./logo192.png"
+    }
     return (
-        <img src={logoimg} />
+        <img src={logoimg.url} />
     )
 }
 
