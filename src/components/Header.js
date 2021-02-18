@@ -10,6 +10,11 @@ const Header = () => {
     let age = 15
     let islogin = true
 
+    const product = [
+      {'id':1,'name':'Gogo','tepy':'1'},
+      {'id':2,'name':'GoTo','tepy':'1'}
+    ]
+
   return (
     <div>
       <Logo />
@@ -25,6 +30,12 @@ const Header = () => {
       {/* if else */}
       <p>IF Else</p>
       {islogin === true ? <Logo /> : <p>False</p>}
+      <hr/>
+      <ul>
+        {product.map((product,index)=>{
+          return <li key={product.id}>{index + 1} {product.name} {product.type}</li>
+        })}
+      </ul>
     </div>
   );
 };
