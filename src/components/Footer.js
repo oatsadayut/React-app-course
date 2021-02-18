@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 
+// prop
 const Footer = ({name,year,phone,isOpen,age}) => {
     return (
         <div>
@@ -9,6 +10,7 @@ const Footer = ({name,year,phone,isOpen,age}) => {
     )
 }
 
+// propTypes 
 Footer.propTypes ={
     name : PropTypes.string,
     year : PropTypes.number,
