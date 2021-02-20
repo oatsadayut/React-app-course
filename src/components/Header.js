@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "./Logo";
+import {Button} from "./style/Button" //ดึง css จาก style component มาใช้
 
 const Header = () => {
   let name = "อัษฎายุธ";
@@ -15,15 +16,13 @@ const Header = () => {
     { id: 2, name: "GoTo", tepy: "1" },
   ];
 
-  let dev = true
-
   const miss = () =>{
     alert('miss You KUY')
   }
 
   return (
     <div>
-      <button onClick={miss}>Click Miss</button>
+      <Button primary onClick={miss}>Click Miss</Button>
       
       <div>
         <Logo />
