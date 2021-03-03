@@ -1,4 +1,5 @@
 import React from 'react'
+import { AiFillGithub } from "react-icons/ai"; //import icon
 
 const HomePage = () => {
     return (
@@ -7,7 +8,8 @@ const HomePage = () => {
             {/* Main jumbotron for a primary marketing message or call to action */}
             <div className="jumbotron">
               <div className="container">
-                <h1 className="display-3">Hello, world!</h1>
+                <span><AiFillGithub size="2rem"/> {'  '} <a href='https://github.com/oatsadayut/React-app-course'>https://github.com/oatsadayut/React-app-course</a> </span>
+                <h1 className="display-3">React App : My-App2</h1>
                 <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
                 <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
               </div>
