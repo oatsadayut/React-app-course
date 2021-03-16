@@ -1,7 +1,24 @@
-import React from "react";
-import { AiFillGithub } from "react-icons/ai"; //import icon
+import React,{useState,useEffect} from "react"
+import  axios  from "axios"
+import { AiFillGithub } from "react-icons/ai" //import icon
 
 const AboutPage = () => {
+
+// useState เพื่อเก็บข้อมูลลงตัวแปร version
+  const [version,setVersion] = useState('')
+
+// get ข้อมูลจาก Api version โดยใช้ Axios
+  const getVersion = async ()=>{
+    const res = await axios.get('https://api.codingthailand.com/api/version')
+    setVersion(res.data.data.version)
+  }
+
+// useEffect เพื่อให้ทำงานเมื่อเรียกหน้า about
+  useEffect(()=>{
+    getVersion()
+  },[])
+
+
   return (
     <main role="main">
       <div className="jumbotron">
@@ -15,8 +32,11 @@ const AboutPage = () => {
           <h1 className="display-3">About Page</h1>
         </div>
       </div>
+      <div className="container">
+        <p>Version : {version}</p>
+      </div>
     </main>
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutPage
