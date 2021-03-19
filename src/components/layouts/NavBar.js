@@ -30,11 +30,8 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavLink className=' nav-link' to="/" exact activeClassName="active">หน้าแรก</NavLink>
+            <NavLink className=' nav-link' to="/product" activeClassName='active'>สินค้า</NavLink>
             <NavLink className=' nav-link' to="/about" activeClassName='active'>เกี่ยวกับเรา</NavLink>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavLink className=" dropdown-item" exact activeClassName="active" to="/">หน้าแรก</NavLink>
-              <NavLink className=" dropdown-item" activeClassName="active" to="/about">เกี่ยวกับเรา</NavLink>
-            </NavDropdown>
           </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />

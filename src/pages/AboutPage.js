@@ -18,7 +18,7 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <main role="main">
+    <>
       <div className="jumbotron">
         <div className="container">
           <span>
@@ -43,7 +43,7 @@ const AboutPage = () => {
 
 
       </div>
-    </main>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import { AiFillGithub } from "react-icons/ai" //import icon
 
 const HomePage = () => {
   return (
-    <main role="main">
+    <>
       <div className="jumbotron">
         <div className="container">
           <span>
@@ -12,10 +12,10 @@ const HomePage = () => {
               https://github.com/oatsadayut/React-app-course
             </a>{" "}
           </span>
-          <h1 className="display-3">React App : My-App2</h1>
+          <h1 className="display-3">Home Page</h1>
         </div>
       </div>
-    </main>
+    </>
   )
 }
 
