@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react"
-import axios from "axios"
-import { Table,Image } from "react-bootstrap"
-import { AiFillGithub } from "react-icons/ai"
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Table, Image, Badge } from "react-bootstrap";
+import { format } from "date-fns";
+import { th } from "date-fns/locale";
+import { AiFillGithub } from "react-icons/ai";
 const ProductPage = () => {
-  const [product, setProduct] = useState([])
+  const [product, setProduct] = useState([]);
 
   const getData = async () => {
     try {
-      const res = await axios.get("https://api.codingthailand.com/api/course")
-      setProduct(res.data.data)
+      const res = await axios.get("https://api.codingthailand.com/api/course");
+      setProduct(res.data.data);
     } catch (error) {}
-  }
+  };
 
   useEffect(() => {
-    getData()
-  })
+    getData();
+  });
 
   return (
     <>
@@ -48,16 +50,27 @@ const ProductPage = () => {
                   <td>{index + 1}</td>
                   <td>{p.title}</td>
                   <td>{p.detail}</td>
-                  <td>{p.date}</td>
-                  <td>{p.view}</td>
-                  <td><Image src={p.picture} alt={p.title} width='40' roundedCircle  /></td>
+                  <td>
+                    {format(new Date(p.date), "dd MMM yyyy", { locale: th })}
+                  </td>
+                  <td>
+                    <Badge variant="warning">{p.view}</Badge>
+                  </td>
+                  <td>
+                    <Image
+                      src={p.picture}
+                      alt={p.title}
+                      width="40"
+                      roundedCircle
+                    />
+                  </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </>
-  )
-}
-export default ProductPage
+  );
+};
+export default ProductPage;
