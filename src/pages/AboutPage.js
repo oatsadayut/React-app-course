@@ -8,7 +8,7 @@ const AboutPage = () => {
 
   // get ข้อมูลจาก Api version โดยใช้ Axios
   const getVersion = async () => {
-    const res = await axios.get("https://api.codingthailand.com/api/versio");
+    const res = await axios.get("https://api.codingthailand.com/api/version");
     setVersion(res.data.data.version);
   };
 
