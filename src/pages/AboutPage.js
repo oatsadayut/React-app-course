@@ -34,14 +34,11 @@ const AboutPage = () => {
 
         {/* if แบบใน JSX */}
         {version && <p>Version : {version}</p>}
-
         {/* แบบปกติ
           if (version) {
             <p>Version : {version}</p>
           }
          */}
-
-
       </div>
     </>
   );

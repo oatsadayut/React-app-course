@@ -1,5 +1,5 @@
-import React from "react"
-import { AiFillGithub } from "react-icons/ai" //import icon
+import React from "react";
+import { AiFillGithub } from "react-icons/ai"; //import icon
 
 const HomePage = () => {
   return (
@@ -16,7 +16,7 @@ const HomePage = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
