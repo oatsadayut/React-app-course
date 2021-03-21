@@ -1,40 +1,40 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useParams,useHistory } from "react-router-dom";
-import axios from "axios";
-import { Badge, Card, Spinner, Button } from "react-bootstrap";
+import React, { useState, useEffect, useRef } from "react"
+import { useParams,useHistory } from "react-router-dom"
+import axios from "axios"
+import { Badge, Card, Spinner, Button } from "react-bootstrap"
 
 const GetDetail = () => {
-  const { id, title, detail_c, view } = useParams();
-  const [detail, setDetail] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const cancelToken = useRef(null);
-  const history = useHistory();
+  const { id, title, detail_c, view } = useParams() //รับตัวแปรที่มาจาก Params
+  const [detail, setDetail] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const cancelToken = useRef(null) 
+  const history = useHistory() //Route History สำหรับ GoBack หรืออื่นๆ
 
   const getData = async (id) => {
     try {
-      setLoading(true);
+      setLoading(true)
       const res = await axios.get(
         `https://api.codingthailand.com/api/course/${id}`,
         {
-          cancelToken: cancelToken.current.token,
+          cancelToken: cancelToken.current.token
         }
-      );
-      setDetail(res.data.data);
+      )
+      setDetail(res.data.data)
     } catch (error) {
-      setError(error);
+      setError(error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    cancelToken.current = axios.CancelToken.source();
-    getData(id);
+    cancelToken.current = axios.CancelToken.source()
+    getData(id)
     return () => {
-      cancelToken.current.cancel();
-    };
-  }, [id]); // <= จะทำก็ต่อเมื่อ id มีการเปลี่ยนแปลง
+      cancelToken.current.cancel()
+    }
+  }, [id]) // <= จะทำก็ต่อเมื่อ id มีการเปลี่ยนแปลง
 
   if (loading === true) {
     return (
@@ -42,7 +42,7 @@ const GetDetail = () => {
         <p>กรุณารอสักครู่</p>
         <Spinner animation="border" variant="primary" />
       </div>
-    );
+    )
   }
 
   if (error) {
@@ -51,7 +51,7 @@ const GetDetail = () => {
         <p>เกิดข้อผิดพลาด</p>
         <p>{error.response.data.message}</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -90,7 +90,7 @@ const GetDetail = () => {
                     </Card.Text>
                   </Card.Body>
                 </Card>
-              );
+              )
             })
           ) : (
             <div className=" text-center my-5">
@@ -100,7 +100,7 @@ const GetDetail = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GetDetail;
+export default GetDetail

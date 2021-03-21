@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import AboutPage from "../../pages/AboutPage";
 import DetailPage from "../../pages/DetailPage";
 import HomePage from "../../pages/HomePage";
+import HospitalPage from "../../pages/hospital/HospitalPage";
 import ProductPage from "../../pages/ProductPage";
 
 const RoutePageContent = () => {
@@ -20,6 +21,9 @@ const RoutePageContent = () => {
         </Route>
         <Route path="/detail/:id/:title/:detail_c/:view">
           <DetailPage />
+        </Route>
+        <Route path="/hospital">
+          <HospitalPage />
         </Route>
       </Switch>
     </main>
