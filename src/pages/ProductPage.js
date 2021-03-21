@@ -1,8 +1,9 @@
 import React from "react";
 import { AiFillGithub } from "react-icons/ai";
 import GetProduct from "../components/product/GetProduct";
-const ProductPage = () => {
 
+
+const ProductPage = () => {
 
   return (
     <>

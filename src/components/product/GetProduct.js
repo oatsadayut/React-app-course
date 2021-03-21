@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from "react"
+
 import axios from "axios"
 import { Table, Image, Badge, Spinner } from "react-bootstrap"
 import { format } from "date-fns"
 import { th } from "date-fns/locale"
+import { Link } from 'react-router-dom'
+import { AiFillEdit } from "react-icons/ai"; //import icon
+
 const GetProduct = () => {
   const [product, setProduct] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-
   const cancelToken = useRef(null) //useRef มัมจะเก็บค่าที่ไม่เปลี่ยนไปแม้จะรีcomponent //Clear Ram
 
   const getData = async () => {
@@ -25,16 +28,11 @@ const GetProduct = () => {
   }
 
   useEffect(() => {
-
-    cancelToken.current = axios.CancelToken.source //Clear Ram : เก็บ Token ไว้ใน useRef ที่เราสร้างไว้
-
+    cancelToken.current = axios.CancelToken.source() //Clear Ram : เก็บ Token ไว้ใน useRef ที่เราสร้างไว้
     getData()
-
-    return (()=>{
+    return ()=>{
       cancelToken.current.cancel() //Clear Ram : ยกเลิก Token ที่เราเก็บไว้
-    })
-    
-
+    }
   },[])
 
   if (loading === true) {
@@ -48,12 +46,10 @@ const GetProduct = () => {
 
   if (error) {
     return (
-
         <div className="my-5 py-5 text-center text-danger h-100">
           <p>เกิดข้อผิดพลาด</p>
           <p>{error.response.data.message}</p>
         </div>
-
     )
   }
 
@@ -68,6 +64,7 @@ const GetProduct = () => {
           <th>Date</th>
           <th>View</th>
           <th>รูปภาพ</th>
+          <th>action</th>
         </tr>
       </thead>
       <tbody>
@@ -82,7 +79,12 @@ const GetProduct = () => {
                 <Badge variant="warning">{p.view}</Badge>
               </td>
               <td>
-                <Image src={p.picture} alt={p.title} width="40" roundedCircle />
+                <Image src={p.picture} alt={p.title} width="36" roundedCircle />
+              </td>
+              <td className=" text-center">
+                <Link to={`/detail/${p.id}/${p.title}/${p.detail}/${p.view}`}>
+                  <AiFillEdit size="15"/>
+                </Link>
               </td>
             </tr>
           )
