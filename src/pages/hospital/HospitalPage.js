@@ -13,8 +13,6 @@ const HospitalPage = () => {
   const [total, setToTal] = React.useState(0)
   const cancelToken = React.useRef(null)
 
-
-
   const getData = async (page) => {
     try {
       setLoading(true)

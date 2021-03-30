@@ -5,8 +5,6 @@ import { NavLink, useHistory} from "react-router-dom";
 const NavBar = () => {
 
   const history = useHistory()
-
-
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -45,6 +43,7 @@ const NavBar = () => {
             </NavLink>
             <NavDropdown title="Workshop" id="basic-nav-dropdown">
               <NavDropdown.Item onClick={()=>{history.replace('/hospital')}}>Hospital (Pagination)</NavDropdown.Item>
+              <NavDropdown.Item onClick={()=>{history.replace('/datateble')}}>Hospital (DataTeble)</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item >Something</NavDropdown.Item>
             </NavDropdown>

@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import AboutPage from "../../pages/AboutPage";
 import DetailPage from "../../pages/DetailPage";
 import HomePage from "../../pages/HomePage";
+import HospitalDataTablePage from "../../pages/hospital/HospitalDataTablePage";
 import HospitalPage from "../../pages/hospital/HospitalPage";
 import ProductPage from "../../pages/ProductPage";
 
@@ -24,6 +25,9 @@ const RoutePageContent = () => {
         </Route>
         <Route path="/hospital">
           <HospitalPage />
+        </Route>
+        <Route path="/datateble">
+          <HospitalDataTablePage />
         </Route>
       </Switch>
     </main>
