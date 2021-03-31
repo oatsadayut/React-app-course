@@ -45,7 +45,7 @@ const NavBar = () => {
               <NavDropdown.Item onClick={()=>{history.replace('/hospital')}}>Hospital (Pagination)</NavDropdown.Item>
               <NavDropdown.Item onClick={()=>{history.replace('/datateble')}}>Hospital (DataTeble)</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item >Something</NavDropdown.Item>
+              <NavDropdown.Item onClick={()=>{history.replace('/catagory')}}>CRUD Catagory</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form inline>

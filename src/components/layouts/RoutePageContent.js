@@ -1,6 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import AboutPage from "../../pages/AboutPage";
+import CreatePage from "../../pages/catagory/CreatePage";
+import EditPage from "../../pages/catagory/EditPage";
+import IndexPage from "../../pages/catagory/IndexPage";
 import DetailPage from "../../pages/DetailPage";
 import HomePage from "../../pages/HomePage";
 import HospitalDataTablePage from "../../pages/hospital/HospitalDataTablePage";
@@ -29,6 +32,22 @@ const RoutePageContent = () => {
         <Route path="/datateble">
           <HospitalDataTablePage />
         </Route>
+        <Route
+          path="/catagory"
+          render={({ match: { url } }) => (
+            <>
+              <Route path={`${url}/`} exact>
+                <IndexPage />
+              </Route>
+              <Route path={`${url}/create`}>
+                <CreatePage />
+              </Route>
+              <Route path={`${url}/edit/:id`}>
+                <EditPage />
+              </Route>
+            </>
+          )}
+        ></Route>
       </Switch>
     </main>
   );

@@ -74,7 +74,6 @@ const HomePage = () => {
           })}
         </div>
       </div>
-      <hr/>
     </>
   );
 };
