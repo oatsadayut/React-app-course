@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 
 const CreatePage = () => {
 
-  let history = useHistory(); //history Route 
+  const history = useHistory(); //history Route 
 
   
   const { register, handleSubmit, errors } = useForm({

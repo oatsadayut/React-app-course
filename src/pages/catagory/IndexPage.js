@@ -12,6 +12,7 @@ const IndexPage = () => {
   const [error, setError] = React.useState(null);
   const cancelToken = React.useRef(null); //useRef มัมจะเก็บค่าที่ไม่เปลี่ยนไปแม้จะรีcomponent //Clear Ram
 
+  // Get Data
   const getData = async () => {
     let url = "https://api.codingthailand.com/api/category";
     try {
@@ -24,6 +25,18 @@ const IndexPage = () => {
       setError(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  //Delete Data
+  const deleteData = async (id, name) => {
+    let isConfirm = window.confirm(`คุณต้องการจะลบข้อมูล ${name} หรือไม่`);
+    if (isConfirm === true) {
+      const res = await axios.delete(
+        `https://api.codingthailand.com/api/category/${id}`
+      );
+      alert(res.data.message);
+      history.go(0);
     }
   };
 
@@ -91,7 +104,21 @@ const IndexPage = () => {
                   <td>{index + 1}</td>
                   <td>{c.name}</td>
                   <td>
-                    <AiFillEdit /> <AiFillDelete />
+                    <button
+                      onClick={() => {
+                        history.push(`/catagory/edit/${c.id}`);
+                      }}
+                    >
+                      <AiFillEdit />
+                    </button>
+                    <button
+                      onClick={() => {
+                        deleteData(c.id, c.name);
+                      }}
+                    >
+                      {" "}
+                      <AiFillDelete />
+                    </button>
                   </td>
                 </tr>
               );
