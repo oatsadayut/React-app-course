@@ -1,10 +1,9 @@
 import React from "react";
-import { Navbar, Nav, Form,Button, NavDropdown } from "react-bootstrap";
-import { NavLink, useHistory} from "react-router-dom";
+import { Navbar, Nav, Form, Button, NavDropdown } from "react-bootstrap";
+import { NavLink, useHistory } from "react-router-dom";
 
 const NavBar = () => {
-
-  const history = useHistory()
+  const history = useHistory();
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -42,11 +41,36 @@ const NavBar = () => {
               เกี่ยวกับเรา
             </NavLink>
             <NavDropdown title="Workshop" id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={()=>{history.replace('/hospital')}}>Hospital (Pagination)</NavDropdown.Item>
-              <NavDropdown.Item onClick={()=>{history.replace('/datateble')}}>Hospital (DataTeble)</NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={() => {
+                  history.replace("/hospital");
+                }}
+              >
+                Hospital (Pagination)
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={() => {
+                  history.replace("/datateble");
+                }}
+              >
+                Hospital (DataTeble)
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={()=>{history.replace('/catagory')}}>CRUD Catagory</NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={() => {
+                  history.replace("/catagory");
+                }}
+              >
+                CRUD Catagory
+              </NavDropdown.Item>
             </NavDropdown>
+            <NavLink
+              className=" nav-link"
+              to="/upload"
+              activeClassName="active"
+            >
+              อัพโหลดไฟล์
+            </NavLink>
           </Nav>
           <Form inline>
             <Button variant="outline-success">Search</Button>

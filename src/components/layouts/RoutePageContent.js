@@ -9,6 +9,7 @@ import HomePage from "../../pages/HomePage";
 import HospitalDataTablePage from "../../pages/hospital/HospitalDataTablePage";
 import HospitalPage from "../../pages/hospital/HospitalPage";
 import ProductPage from "../../pages/ProductPage";
+import UploadPage from "../../pages/UploadPage";
 
 const RoutePageContent = () => {
   return (
@@ -48,6 +49,9 @@ const RoutePageContent = () => {
             </>
           )}
         ></Route>
+        <Route path="/upload">
+          <UploadPage />
+        </Route>
       </Switch>
     </main>
   );
