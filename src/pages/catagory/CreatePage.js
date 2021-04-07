@@ -3,6 +3,7 @@ import { AiFillGithub } from "react-icons/ai"; //import icon
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 //React Hook Form
 import { useForm } from "react-hook-form";
@@ -17,20 +18,24 @@ const schema = yup.object().shape({
 
 const CreatePage = () => {
 
-  const history = useHistory(); //history Route 
+  const { addToast } = useToasts(); //Toasts Alert
+  const history = useHistory(); //history Route
 
-  
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data) => {
-    let url = "https://api.codingthailand.com/api/category";
-    const res = await axios.post(url, {
-      name: data.catagoryName,
-    });
-    alert(res.data.message)
-    history.replace('/catagory')
+    try {
+      let url = "https://api.codingthailand.com/api/category";
+      const res = await axios.post(url, {
+        name: data.catagoryName,
+      });
+      history.replace("/catagory");
+      addToast(res.data.message, { appearance: "success" });
+    } catch (error) {
+      addToast(error.response.data.message, { appearance: "error" });
+    }
   };
 
   return (

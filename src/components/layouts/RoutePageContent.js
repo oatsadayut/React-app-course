@@ -8,7 +8,9 @@ import DetailPage from "../../pages/DetailPage";
 import HomePage from "../../pages/HomePage";
 import HospitalDataTablePage from "../../pages/hospital/HospitalDataTablePage";
 import HospitalPage from "../../pages/hospital/HospitalPage";
+import LoginPage from "../../pages/LoginPage";
 import ProductPage from "../../pages/ProductPage";
+import RegisterPage from "../../pages/RegisterPage";
 import UploadPage from "../../pages/UploadPage";
 
 const RoutePageContent = () => {
@@ -51,6 +53,12 @@ const RoutePageContent = () => {
         ></Route>
         <Route path="/upload">
           <UploadPage />
+        </Route>
+        <Route path="/register">
+          <RegisterPage/>
+        </Route>
+        <Route path="/login">
+          <LoginPage />
         </Route>
       </Switch>
     </main>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Form, Button, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
 
 const NavBar = () => {
@@ -72,9 +72,14 @@ const NavBar = () => {
               อัพโหลดไฟล์
             </NavLink>
           </Nav>
-          <Form inline>
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          <Nav>
+            <NavLink className=" nav-link" to="/register" activeClassName="active">
+              สมัตรสมาชิก
+            </NavLink>
+            <NavLink className=" nav-link" to="/login" activeClassName="active">
+              เข้าสู่ระบบ
+            </NavLink>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     </>
