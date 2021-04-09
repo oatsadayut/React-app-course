@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import AuthRoute from "../../Guard/Auth";
 import AboutPage from "../../pages/AboutPage";
 import CreatePage from "../../pages/catagory/CreatePage";
 import EditPage from "../../pages/catagory/EditPage";
@@ -11,6 +12,7 @@ import HospitalPage from "../../pages/hospital/HospitalPage";
 import LoginPage from "../../pages/LoginPage";
 import ProductPage from "../../pages/ProductPage";
 import RegisterPage from "../../pages/RegisterPage";
+import GuestRoute from "../../Guard/Guest";
 import UploadPage from "../../pages/UploadPage";
 
 const RoutePageContent = () => {
@@ -51,15 +53,19 @@ const RoutePageContent = () => {
             </>
           )}
         ></Route>
-        <Route path="/upload">
+
+        <AuthRoute path="/upload">
           <UploadPage />
-        </Route>
+        </AuthRoute>
+
         <Route path="/register">
           <RegisterPage/>
         </Route>
-        <Route path="/login">
+
+        <GuestRoute path="/login">
           <LoginPage />
-        </Route>
+        </GuestRoute>
+
       </Switch>
     </main>
   );

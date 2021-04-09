@@ -39,7 +39,7 @@ const RegisterPage = () => {
       addToast(res.data.message, { appearance: "success" });
       history.replace("/login");
     } catch (error) {
-      addToast(error.response.data.message, { appearance: "error" });
+      addToast(error.response.data.errors.email[0], { appearance: "error" });
     }
   };
 
