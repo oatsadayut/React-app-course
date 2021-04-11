@@ -14,6 +14,7 @@ import ProductPage from "../../pages/ProductPage";
 import RegisterPage from "../../pages/RegisterPage";
 import GuestRoute from "../../Guard/Guest";
 import UploadPage from "../../pages/UploadPage";
+import MemberPage from "../../pages/MemberPage";
 
 const RoutePageContent = () => {
   return (
@@ -65,6 +66,10 @@ const RoutePageContent = () => {
         <GuestRoute path="/login">
           <LoginPage />
         </GuestRoute>
+
+        <AuthRoute path="/member">
+          <MemberPage/>
+        </AuthRoute>
 
       </Switch>
     </main>

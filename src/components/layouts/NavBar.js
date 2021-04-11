@@ -91,6 +91,15 @@ const NavBar = () => {
             >
               อัพโหลดไฟล์
             </NavLink>
+
+            <NavLink
+              className=" nav-link"
+              to="/member"
+              activeClassName="active"
+            >
+              สมาชิก
+            </NavLink>
+            
           </Nav>
 
           {profile ? (
