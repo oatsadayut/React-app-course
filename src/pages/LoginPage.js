@@ -12,6 +12,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+//Redux Call Action ---------------------------------------------
+import { useDispatch } from "react-redux";
+import { updateProfile } from "../redux/action/profileAction";
+// --------------------------------------------------------------
+
 // React hook form Schema Validation
 const schema = yup.object().shape({
   email: yup.string().required("กรุณากรอก Email").email("ไม่ใช่รูปแบบ Email !"), //ตั้งไว้ว่า input นี้ต้องกรอกและ เป็น String เท่านั้น ตรง .required("<หากไม่กรอกให้แสดงอะไร>") และเป็นรูปแบบ Email
@@ -29,20 +34,8 @@ const LoginPage = () => {
     resolver: yupResolver(schema),
   });
 
-  // GetProfile function
-  const getProfile = async (token) => {
-      try{
-        const url = "https://api.codingthailand.com/api/profile";
-        const res = await axios.get(url,{
-            headers:{
-                Authorization: `Bearer ${token}`  // Send Token Header Authorization : Bearer <TOKEN>
-            }
-        });
-        localStorage.setItem('pid',JSON.stringify(res.data.data.user)) // Add User Data To LocalStorage pid Key
-      }catch(error){
-        console.log(error)
-      }
-  };
+  //Redux Call Action : ประกาศใช้งาน Dispatch โดยให้ชื่อว่า action
+  const action = useDispatch();
 
   const onSubmit = async (data) => {
     try {
@@ -51,15 +44,34 @@ const LoginPage = () => {
         email: data.email,
         password: data.password,
       });
+
       localStorage.setItem("token", JSON.stringify(res.data)); //set Token To localStorage
-      addToast("Login เรียบร้อย", { appearance: "success" });
       await getProfile(res.data.access_token); //Send Token To getProfile function
-      // history.replace("/")
-      history.go(0)
     } catch (error) {
       addToast(error.response.data.message, { appearance: "error" });
     }
   };
+
+  // GetProfile function
+  const getProfile = async (token) => {
+    try {
+      const url = "https://api.codingthailand.com/api/profile";
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Send Token Header Authorization : Bearer <TOKEN>
+        },
+      });
+
+      localStorage.setItem("pid", JSON.stringify(res.data.data.user)); // Add User Data To LocalStorage pid Key
+      const profileValue = JSON.parse(localStorage.getItem('pid')); // Create ตัวแปร profileValue เพื่อมาเก็บข้อมูล profile ที่อยู่ใน localStorage
+      action(updateProfile(profileValue)); //ส่งตัวแปรที่เก็บข้อมูล profile เข้าไปใน action เพื่อ ส่งให้ Redux Reducer อัพเดทข้อมูลต่อไป 
+
+      history.replace("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="jumbotron">

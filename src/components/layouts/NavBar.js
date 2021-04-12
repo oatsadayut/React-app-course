@@ -2,26 +2,37 @@ import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
 
+
+//Redux ------------------------------------------------------------
+import { useSelector ,useDispatch } from "react-redux";
+import { updateProfile } from "../../redux/action/profileAction";
+// -----------------------------------------------------------------
+
 const NavBar = () => {
   const history = useHistory();
-  const [profile, setProfile] = React.useState(null);
+
+  //Redux Dispatch
+  const action = useDispatch() //สร้างตัวแปร action เพื่อใช้งาน Function Dispatch
+
+  //Redux
+  const profileRedux = useSelector((state) => state.profileReducer.profile); // ดึงข้อมูลที่อยู่ใน Redux Reducer Profile มาเก็บในตัวแปร profileRedux
 
   const getProfile = () => {
-    console.log('get profile')
-    const proFileValue = JSON.parse(localStorage.getItem("pid"));
-    if (proFileValue) {
-      setProfile(proFileValue);
+    const profileValue = JSON.parse(localStorage.getItem("pid"));
+    if (profileValue) {
+      action(updateProfile(profileValue)); //อัพเดทข้อมูลให้ action เพื่อส่งต่อให้ Redux Reducer เพื่ออัพเดทข้อมูลใน Reducer Profile
     }
   };
 
   React.useEffect(() => {
     getProfile();
-  },[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const logOut = () => {
     localStorage.removeItem("pid");
     localStorage.removeItem("token");
-    history.go(0);
+    action(updateProfile(null))
   };
 
   return (
@@ -99,13 +110,12 @@ const NavBar = () => {
             >
               สมาชิก
             </NavLink>
-            
           </Nav>
 
-          {profile ? (
+          {profileRedux ? (
             <>
               <span className=" text-light">
-                {profile.name} : {profile.email}
+                {profileRedux.name} : {profileRedux.email}
               </span>
               <button
                 className=" btn btn-danger text-light mx-2"
