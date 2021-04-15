@@ -10,7 +10,7 @@ const IndexPage = () => {
   const [loading, setLoading] = React.useState(false);
   const [catagory, setCatagory] = React.useState([]);
   const [error, setError] = React.useState(null);
-  const cancelToken = React.useRef(null); //useRef มัมจะเก็บค่าที่ไม่เปลี่ยนไปแม้จะรีcomponent //Clear Ram
+  const cancelToken = React.useRef(null); //useRef จะเก็บค่าที่ไม่เปลี่ยนไปแม้จะรีcomponent //Clear Ram
 
   // Get Data
   const getData = async () => {
@@ -111,11 +111,7 @@ const IndexPage = () => {
                     >
                       <AiFillEdit />
                     </button>
-                    <button
-                      onClick={() => {
-                        deleteData(c.id, c.name);
-                      }}
-                    >
+                    <button onClick={() => deleteData(c.id, c.name)}>
                       {" "}
                       <AiFillDelete />
                     </button>

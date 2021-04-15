@@ -1,10 +1,9 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Badge } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
 
-
 //Redux ------------------------------------------------------------
-import { useSelector ,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { updateProfile } from "../../redux/action/profileAction";
 // -----------------------------------------------------------------
 
@@ -12,10 +11,11 @@ const NavBar = () => {
   const history = useHistory();
 
   //Redux Dispatch
-  const action = useDispatch() //สร้างตัวแปร action เพื่อใช้งาน Function Dispatch
+  const action = useDispatch(); //สร้างตัวแปร action เพื่อใช้งาน Function Dispatch
 
   //Redux
   const profileRedux = useSelector((state) => state.profileReducer.profile); // ดึงข้อมูลที่อยู่ใน Redux Reducer Profile มาเก็บในตัวแปร profileRedux
+  const total = useSelector((state) => state.cartReducer.total);
 
   const getProfile = () => {
     const profileValue = JSON.parse(localStorage.getItem("pid"));
@@ -32,7 +32,7 @@ const NavBar = () => {
   const logOut = () => {
     localStorage.removeItem("pid");
     localStorage.removeItem("token");
-    action(updateProfile(null))
+    action(updateProfile(null));
   };
 
   return (
@@ -126,6 +126,14 @@ const NavBar = () => {
             </>
           ) : (
             <Nav>
+              <NavLink
+                className=" nav-link"
+                to="/cart"
+                activeClassName="active"
+              >
+                ตะกล้าสินค้า {' '}
+                <Badge variant="danger">{total}</Badge>
+              </NavLink>
               <NavLink
                 className=" nav-link"
                 to="/register"
