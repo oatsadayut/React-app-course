@@ -5,6 +5,8 @@ import { NavLink, useHistory } from "react-router-dom";
 //Redux ------------------------------------------------------------
 import { useSelector, useDispatch } from "react-redux";
 import { updateProfile } from "../../redux/action/profileAction";
+import { authToken } from "../../redux/action/authAction";
+
 // -----------------------------------------------------------------
 
 const NavBar = () => {
@@ -33,21 +35,22 @@ const NavBar = () => {
     localStorage.removeItem("pid");
     localStorage.removeItem("token");
     action(updateProfile(null));
+    action(authToken(null));
   };
 
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
         <NavLink className="navbar-brand" to="/" exact activeClassName="active">
-          <img
+          {/* <img
             src="/logo192.png"
             width="30"
             height="30"
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
-          />
+          /> */}
           {"  "}
-          <span>My-app2</span>
+          <span>SHOP</span>
         </NavLink>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

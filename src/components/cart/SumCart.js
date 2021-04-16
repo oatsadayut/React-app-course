@@ -1,12 +1,13 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 const SumCart = () => {
   const piceTotal = useSelector((state) => state.cartReducer.piceTotal);
   const cartTotal = useSelector((state) => state.cartReducer.total);
 
+  const action = useDispatch();
 
   return (
     <div>
@@ -17,6 +18,7 @@ const SumCart = () => {
           <h5>ราคารวม {piceTotal} บาท</h5>
         </Card.Body>
       </Card>
+      <button className="btn btn-danger btn-lg btn-block mt-2">ลบข้อมูลทั้งหมด</button>
     </div>
   );
 };

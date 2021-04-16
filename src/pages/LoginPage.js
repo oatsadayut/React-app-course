@@ -13,8 +13,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 //Redux Call Action ---------------------------------------------
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { updateProfile } from "../redux/action/profileAction";
+import { authToken } from "../redux/action/authAction";
+
 // --------------------------------------------------------------
 
 // React hook form Schema Validation
@@ -33,10 +35,8 @@ const LoginPage = () => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
-
   //Redux Call Action : ประกาศใช้งาน Dispatch โดยให้ชื่อว่า action
   const action = useDispatch();
-
   const onSubmit = async (data) => {
     try {
       const url = "https://api.codingthailand.com/api/login";
@@ -45,20 +45,23 @@ const LoginPage = () => {
         password: data.password,
       });
 
-      localStorage.setItem("token", JSON.stringify(res.data)); //set Token To localStorage
+      // localStorage.setItem("token", JSON.stringify(res.data)); //set Token To localStorage
+      action(authToken(res.data))
       await getProfile(res.data.access_token); //Send Token To getProfile function
+
     } catch (error) {
-      addToast(error.response.data.message, { appearance: "error" });
+      // addToast(error.response.data.message, { appearance: "error" });
+      console.log(error)
     }
   };
 
   // GetProfile function
-  const getProfile = async (token) => {
+  const getProfile = async (token_access) => {
     try {
       const url = "https://api.codingthailand.com/api/profile";
       const res = await axios.get(url, {
         headers: {
-          Authorization: `Bearer ${token}`, // Send Token Header Authorization : Bearer <TOKEN>
+          Authorization: `Bearer ${token_access}`, // Send Token Header Authorization : Bearer <TOKEN>
         },
       });
 
